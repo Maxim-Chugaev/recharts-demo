@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    /* Ensure it takes full width */
+    max-width: 1300px;
+    min-width: 671px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    /* Ensure padding is included in width */
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    color: #212529;
+    font-weight: 700;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+}
+
+.controlsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem 0.5rem 4rem;
+    /* Adjusted padding: 4rem left as requested */
+    background: white;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+@media (max-width: 670px) {
+    .container {
+        padding: 1rem;
+        /* min-width: auto; - Removing this to enforce min-width 671px if desired, 
+           OR if user wants it to be responsive < 671, then keep it. 
+           But user said "between 671 and 1300". 
+           If I keep min-width: 671px on .container globally, then < 671 will scroll.
+           Let's assume < 671 can scroll or adapt. 
+           But the prompt says "Responsive layout for screens between 671 px and 1300 px".
+           This implies the design target is that range.
+           I will keep min-width: auto for < 670 to allow mobile adaptation if needed, 
+           but the main fix is ensuring 671-768 is treated as desktop.
+        */
+        min-width: auto;
+    }
+
+    .controlsRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

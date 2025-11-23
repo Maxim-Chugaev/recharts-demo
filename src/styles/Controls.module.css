@@ -1,0 +1,85 @@
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Center vertically */
+    background: transparent;
+    flex-wrap: nowrap;
+    /* Force single row */
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    /* Force single row */
+    align-items: center;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.exportButton {
+    background: white;
+    color: #675D5E;
+    border: 1px solid #C7C5D0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 28px;
+    width: 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exportButton:hover {
+    background: #f5f5f5;
+    border-color: #918F9A;
+}
+
+.resetButton {
+    background: white;
+    color: #495057;
+    border: 1px solid #ced4da;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    height: 38px;
+}
+
+.resetButton:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+@media (max-width: 670px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .exportButton,
+    .resetButton {
+        width: 100%;
+    }
+}
