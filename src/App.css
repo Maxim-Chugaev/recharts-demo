@@ -33,8 +33,8 @@
 
 [data-theme='dark'] {
   /* Dark Theme */
-  --bg-color: #0e0e1a;
-  --card-bg: #0e0e1a;
+  --bg-color: #000027;
+  --card-bg: #000027;
   --text-primary: #e0e0e0;
   --text-secondary: #8b8b99;
   --border-color: #2d2d3d;
@@ -46,7 +46,7 @@
   --button-hover: #1e1e2d;
   --button-active: #2d2d3d;
   --chart-grid: #2d2d3d;
-  --axis-text: #8b8b99;
+  --axis-text: #918F9A;
 
   /* Chart Line Colors - Dark (Neon) */
   --color-0: #8395a7;
