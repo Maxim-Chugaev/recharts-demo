@@ -28,8 +28,8 @@ interface LineChartProps {
 const COLORS: Record<string, string> = {
     '0': '#46464F',      // Original - Lighter Dark Gray
     '10001': '#4142EF',  // Var A - Corrected Blue
-    '10002': '#008864',  // Var B - Green
-    '10003': '#FF8346',  // Var C - Orange
+    '10002': '#FF8346',  // Var B - Orange
+    '10003': '#008864',  // Var C - Green
     // Fallback colors
     'default': '#6c757d'
 };
@@ -103,7 +103,7 @@ const CustomYAxisTick: React.FC<any> = ({ x, y, payload }) => {
             >
                 %
             </text>
-        </g>
+        </g >
     );
 };
 
@@ -176,6 +176,19 @@ export const LineChart: React.FC<LineChartProps> = ({
         }
     }, [isPanning]);
 
+    // Force cursor style on body during drag to ensure it doesn't flicker or revert
+    useEffect(() => {
+        if (isDragging) {
+            document.body.style.cursor = 'grabbing';
+        } else {
+            document.body.style.cursor = '';
+        }
+
+        return () => {
+            document.body.style.cursor = '';
+        };
+    }, [isDragging]);
+
     const isArea = lineStyle === 'area';
     const chartType = isArea ? 'monotone' : lineStyle;
 
@@ -213,7 +226,12 @@ export const LineChart: React.FC<LineChartProps> = ({
                         axisLine={false}
                         domain={['auto', 'auto']}
                     />
-                    <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#adb5bd', strokeWidth: 1, strokeDasharray: '5 5' }} />
+                    {!isPanning && (
+                        <Tooltip
+                            content={<CustomTooltip />}
+                            cursor={{ stroke: '#adb5bd', strokeWidth: 1, strokeDasharray: '5 5' }}
+                        />
+                    )}
                     {activeVariations.map((v) => {
                         const isMonotone = lineStyle === 'monotone';
 
@@ -246,7 +264,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                                     fill={getColor(v.id)}
                                     fillOpacity={isArea ? 0.2 : 0}
                                     dot={false}
-                                    activeDot={{ r: 6, strokeWidth: 0 }}
+                                    activeDot={isPanning ? false : { r: 6, strokeWidth: 0 }}
                                     connectNulls
                                 />
                             </React.Fragment>

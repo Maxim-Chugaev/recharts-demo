@@ -1,20 +1,16 @@
 .controls {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    /* Center vertically */
     background: transparent;
-    flex-wrap: nowrap;
-    /* Force single row */
-    gap: 1.5rem;
-    flex: 1;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* Removed flex: 1 to allow natural wrapping */
 }
 
 .group {
     display: flex;
-    gap: 1.5rem;
-    flex-wrap: nowrap;
-    /* Force single row */
+    gap: 1rem;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -22,12 +18,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .exportButton {
-    background: white;
-    color: #675D5E;
-    border: 1px solid #C7C5D0;
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--select-border);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s;
@@ -40,46 +37,27 @@
 }
 
 .exportButton:hover {
-    background: #f5f5f5;
-    border-color: #918F9A;
-}
-
-.resetButton {
-    background: white;
-    color: #495057;
-    border: 1px solid #ced4da;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s;
-    height: 38px;
-}
-
-.resetButton:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
+    background-color: var(--button-hover);
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
 }
 
 @media (max-width: 670px) {
     .controls {
-        flex-direction: column;
-        align-items: stretch;
+        width: 100%;
+        justify-content: flex-start;
     }
 
     .group {
-        flex-direction: column;
-        gap: 1rem;
+        width: auto;
     }
 
     .section {
-        flex-direction: column;
-        align-items: stretch;
+        width: auto;
     }
 
-    .exportButton,
-    .resetButton {
-        width: 100%;
+    /* Remove full width forcing */
+    .exportButton {
+        width: 36px;
     }
 }

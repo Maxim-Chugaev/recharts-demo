@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+:root {
+  /* Light Theme (Default) */
+  --bg-color: #FBFBFD;
+  --card-bg: #ffffff;
+  --text-primary: #1B1B23;
+  --text-secondary: #6c757d;
+  --border-color: #C7C5D0;
+  --grid-color: #e9ecef;
+  --tooltip-bg: #ffffff;
+  --tooltip-border: #e9ecef;
+  --select-bg: #ffffff;
+  --select-border: #C7C5D0;
+  --button-hover: #f8f9fa;
+  --button-active: #e9ecef;
+  --chart-grid: #e9ecef;
+  --axis-text: #6c757d;
+}
+
+[data-theme='dark'] {
+  /* Dark Theme */
+  --bg-color: #080813;
+  --card-bg: #080813;
+  --text-primary: #e0e0e0;
+  --text-secondary: #8b8b99;
+  --border-color: #2d2d3d;
+  --grid-color: #1e1e2d;
+  --tooltip-bg: #13131f;
+  --tooltip-border: #2d2d3d;
+  --select-bg: #13131f;
+  --select-border: #2d2d3d;
+  --button-hover: #1e1e2d;
+  --button-active: #2d2d3d;
+  --chart-grid: #1e1e2d;
+  --axis-text: #8b8b99;
+}
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -11,9 +47,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #FBFBFD;
-  color: #1B1B23;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .app-wrapper {

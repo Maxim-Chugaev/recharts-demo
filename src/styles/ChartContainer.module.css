@@ -33,29 +33,45 @@
     align-items: center;
     padding: 1.5rem 1rem 0.5rem 4rem;
     /* Adjusted padding: 4rem left as requested */
-    background: white;
+    background-color: var(--card-bg);
+    border-bottom: none;
+    transition: background-color 0.3s;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+.themeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.themeToggle:hover {
+    background-color: var(--button-hover);
+    color: var(--text-primary);
 }
 
 @media (max-width: 670px) {
     .container {
         padding: 1rem;
-        /* min-width: auto; - Removing this to enforce min-width 671px if desired, 
-           OR if user wants it to be responsive < 671, then keep it. 
-           But user said "between 671 and 1300". 
-           If I keep min-width: 671px on .container globally, then < 671 will scroll.
-           Let's assume < 671 can scroll or adapt. 
-           But the prompt says "Responsive layout for screens between 671 px and 1300 px".
-           This implies the design target is that range.
-           I will keep min-width: auto for < 670 to allow mobile adaptation if needed, 
-           but the main fix is ensuring 671-768 is treated as desktop.
-        */
         min-width: auto;
     }
 
     .controlsRow {
-        flex-direction: column;
-        align-items: stretch;
+        padding: 1rem;
+        padding-left: 1rem;
+        justify-content: flex-start;
+        /* Allow wrapping instead of column */
+        flex-direction: row;
+        align-items: center;
     }
 }

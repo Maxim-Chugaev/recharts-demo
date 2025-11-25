@@ -6,6 +6,7 @@ import { ZoomControls } from './ZoomControls';
 import { getChartData, variations } from '../utils/dataProcessing';
 import type { TimeFrame } from '../utils/dataProcessing';
 import styles from '../styles/ChartContainer.module.css';
+import { Sun, Moon } from 'lucide-react';
 
 import html2canvas from 'html2canvas';
 
@@ -21,12 +22,27 @@ export const ChartContainer: React.FC = () => {
     const [leftIndex, setLeftIndex] = useState<number | null>(null);
     const [rightIndex, setRightIndex] = useState<number | null>(null);
 
+    // Theme state
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return (savedTheme as 'light' | 'dark') || 'light';
+    });
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    };
+
     const data = useMemo(() => getChartData(timeFrame), [timeFrame]);
 
     // Reset zoom when data changes
     useEffect(() => {
-        setLeftIndex(null);
-        setRightIndex(null);
+        setLeftIndex(0);
+        setRightIndex(data.length - 1);
     }, [data]);
 
     const handleToggleVariation = (id: string) => {
@@ -76,8 +92,8 @@ export const ChartContainer: React.FC = () => {
     };
 
     const handleResetZoom = () => {
-        setLeftIndex(null);
-        setRightIndex(null);
+        setLeftIndex(0);
+        setRightIndex(data.length - 1);
         setIsPanning(false);
         // Reset all settings to initial values
         setTimeFrame('day');
@@ -121,6 +137,17 @@ export const ChartContainer: React.FC = () => {
                         isPanning={isPanning}
                         onTogglePan={() => setIsPanning(!isPanning)}
                     />
+                    <button
+                        className={styles.themeToggle}
+                        onClick={toggleTheme}
+                        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                    >
+                        {theme === 'light' ? (
+                            <Moon size={16} color="currentColor" strokeWidth={1.5} />
+                        ) : (
+                            <Sun size={16} color="currentColor" strokeWidth={1.5} />
+                        )}
+                    </button>
                 </div>
                 <LineChart
                     data={data}

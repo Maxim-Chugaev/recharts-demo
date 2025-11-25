@@ -8,15 +8,14 @@
 .label {
     display: block;
     font-size: 0.8rem;
-    color: #6c757d;
+    color: var(--text-secondary);
     margin-bottom: 0.25rem;
     font-weight: 600;
 }
 
 .select {
-    background: white;
-    border: 1px solid #C7C5D0;
-    /* Updated border color */
+    background-color: var(--select-bg);
+    border: 1px solid var(--select-border);
     border-radius: 4px;
     padding: 0 0.5rem;
     cursor: pointer;
@@ -27,18 +26,17 @@
     /* User requested text styles */
     font-family: Helvetica, sans-serif;
     font-size: 12px;
-    color: #1B1B23;
+    color: var(--text-primary);
     letter-spacing: 0.25px;
     line-height: 15px;
 
     user-select: none;
     height: 28px;
     box-sizing: border-box;
-    /* Ensure padding/border don't increase size */
 }
 
 .select:hover {
-    border-color: #b1a7a9;
+    border-color: var(--text-secondary);
 }
 
 .value {
@@ -56,8 +54,8 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border: 1px solid #ced4da;
+    background-color: var(--select-bg);
+    border: 1px solid var(--select-border);
     border-radius: 4px;
     margin-top: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -76,17 +74,17 @@
     /* Match select text styles */
     font-family: Helvetica, sans-serif;
     font-size: 12px;
-    color: #1B1B23;
+    color: var(--text-primary);
     letter-spacing: 0.25px;
     line-height: 15px;
 }
 
 .option:hover {
-    background-color: #f8f9fa;
+    background-color: var(--button-hover);
 }
 
 .option.selected {
-    background-color: #e9ecef;
+    background-color: var(--button-active);
     font-weight: 500;
 }
 
