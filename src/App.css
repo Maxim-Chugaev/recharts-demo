@@ -16,12 +16,25 @@
   --button-active: #e9ecef;
   --chart-grid: #e9ecef;
   --axis-text: #6c757d;
+
+  /* Chart Line Colors - Light */
+  --color-0: #46464F;
+  --color-10001: #4142EF;
+  --color-10002: #FF8346;
+  --color-10003: #008864;
+  --color-default: #6c757d;
+
+  /* Brush Colors - Light */
+  --brush-stroke: #C7C5D0;
+  --brush-fill: #FBFBFD;
+  --brush-handle: #6c757d;
+  --brush-selection: rgba(108, 117, 125, 0.1);
 }
 
 [data-theme='dark'] {
   /* Dark Theme */
-  --bg-color: #080813;
-  --card-bg: #080813;
+  --bg-color: #0e0e1a;
+  --card-bg: #0e0e1a;
   --text-primary: #e0e0e0;
   --text-secondary: #8b8b99;
   --border-color: #2d2d3d;
@@ -32,8 +45,21 @@
   --select-border: #2d2d3d;
   --button-hover: #1e1e2d;
   --button-active: #2d2d3d;
-  --chart-grid: #1e1e2d;
+  --chart-grid: #2d2d3d;
   --axis-text: #8b8b99;
+
+  /* Chart Line Colors - Dark (Neon) */
+  --color-0: #8395a7;
+  --color-10001: #54a0ff;
+  --color-10002: #ff9f43;
+  --color-10003: #1dd1a1;
+  --color-default: #c8d6e5;
+
+  /* Brush Colors - Dark */
+  --brush-stroke: #2d2d3d;
+  --brush-fill: #13131f;
+  --brush-handle: #54a0ff;
+  --brush-selection: rgba(84, 160, 255, 0.1);
 }
 
 #root {

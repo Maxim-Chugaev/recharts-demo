@@ -1,12 +1,10 @@
 .chartContainer {
     width: 100%;
     height: 500px;
-    background: white;
+    background: transparent;
     padding: 0 1rem 1rem 1rem;
-    /* Removed top padding to bring closer to controls */
     box-sizing: border-box;
     outline: none;
-    /* Remove focus outline on click */
 }
 
 .chartContainer:focus {
@@ -14,18 +12,41 @@
 }
 
 /* Add spacing above the Brush slider */
+/* Add spacing above the Brush slider */
 .chartContainer :global(.recharts-brush) {
     margin-top: 20px;
 }
 
+.chartContainer :global(.recharts-brush-slide-area) {
+    fill: var(--brush-selection) !important;
+    stroke: none;
+}
+
+.chartContainer :global(.recharts-brush-traveller rect) {
+    fill: var(--brush-handle) !important;
+    stroke: none;
+    width: 4px;
+    rx: 2px;
+    /* Rounded handles */
+}
+
+.chartContainer :global(.recharts-brush-traveller line) {
+    stroke: none;
+    /* Hide the default lines inside handles */
+}
+
+.chartContainer :global(.recharts-brush-texts) {
+    display: none;
+    /* Hide text labels for cleaner look */
+}
+
 .tooltip {
-    background: #FFFFFF;
+    background-color: var(--tooltip-bg);
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.20);
     border-radius: 6px;
     padding: 0.75rem;
     font-size: 0.9rem;
-    border: none;
-    /* Removing default border as shadow is sufficient */
+    border: 1px solid var(--tooltip-border);
 }
 
 .tooltipDateRow {
@@ -33,17 +54,15 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid #E1DFE7;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.25rem;
 }
-
-
 
 .tooltipDate {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
-    color: #52515B;
+    color: var(--text-secondary);
     letter-spacing: 0.25px;
     line-height: 15px;
 }
@@ -60,15 +79,13 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.25rem;
-    color: #1B1B23;
-    /* Default text color */
+    color: var(--text-primary);
 }
 
 .tooltipNameRow {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Small gap between dot and name */
 }
 
 .colorDot {
@@ -81,16 +98,15 @@
 .tooltipName {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
-    color: #1B1B23;
+    color: var(--text-primary);
     line-height: 16px;
     font-weight: 400;
-    /* Resetting weight as not specified, or maybe 500? User didn't specify. Let's assume normal or inherit. But previous was 500. I'll use the user's exact list implies replacing. */
 }
 
 .tooltipValue {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
-    color: #52515B;
+    color: var(--text-secondary);
     letter-spacing: 0.25px;
     line-height: 15px;
     font-weight: 600;

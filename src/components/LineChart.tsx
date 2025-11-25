@@ -25,17 +25,6 @@ interface LineChartProps {
     onChangeRange: (start: number, end: number) => void;
 }
 
-const COLORS: Record<string, string> = {
-    '0': '#46464F',      // Original - Lighter Dark Gray
-    '10001': '#4142EF',  // Var A - Corrected Blue
-    '10002': '#FF8346',  // Var B - Orange
-    '10003': '#008864',  // Var C - Green
-    // Fallback colors
-    'default': '#6c757d'
-};
-
-const getColor = (id: string) => COLORS[id] || COLORS['default'];
-
 const formatDate = (dateStr: string) => {
     if (!dateStr) return '';
     const [year, month, day] = dateStr.split('-');
@@ -54,7 +43,7 @@ const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
         return (
             <div className={styles.tooltip}>
                 <div className={styles.tooltipDateRow}>
-                    <Calendar size={16} color="#52515B" strokeWidth={1.5} />
+                    <Calendar size={16} color="var(--text-secondary)" strokeWidth={1.5} />
                     <span className={styles.tooltipDate}>{formatDate(label)}</span>
                 </div>
                 <ul className={styles.tooltipList}>
@@ -66,7 +55,7 @@ const CustomTooltip: React.FC<any> = ({ active, payload, label }) => {
                                     style={{ backgroundColor: entry.color }}
                                 />
                                 <span className={styles.tooltipName}>{entry.name}:</span>
-                                {index === 0 && <Trophy size={18} color="#52515B" strokeWidth={1.5} />}
+                                {index === 0 && <Trophy size={18} color="var(--text-secondary)" strokeWidth={1.5} />}
                             </div>
                             <span className={styles.tooltipValue}>{entry.value?.toFixed(2)}%</span>
                         </li>
@@ -86,7 +75,7 @@ const CustomYAxisTick: React.FC<any> = ({ x, y, payload }) => {
                 y={0}
                 dy={-2}
                 textAnchor="end"
-                fill="#918F9A"
+                fill="var(--axis-text)"
                 fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
                 fontSize={11}
             >
@@ -97,7 +86,7 @@ const CustomYAxisTick: React.FC<any> = ({ x, y, payload }) => {
                 y={0}
                 dy={10}
                 textAnchor="end"
-                fill="#918F9A"
+                fill="var(--axis-text)"
                 fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
                 fontSize={11}
             >
@@ -212,12 +201,12 @@ export const LineChart: React.FC<LineChartProps> = ({
                         bottom: 60,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e9ecef" />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--chart-grid)" />
                     <XAxis
                         dataKey="date"
-                        tick={{ fontSize: 12, fill: '#6c757d', dy: 10 }}
+                        tick={{ fontSize: 12, fill: 'var(--axis-text)', dy: 10 }}
                         tickLine={false}
-                        axisLine={{ stroke: '#dee2e6' }}
+                        axisLine={{ stroke: 'var(--border-color)' }}
                         minTickGap={30}
                     />
                     <YAxis
@@ -229,39 +218,20 @@ export const LineChart: React.FC<LineChartProps> = ({
                     {!isPanning && (
                         <Tooltip
                             content={<CustomTooltip />}
-                            cursor={{ stroke: '#adb5bd', strokeWidth: 1, strokeDasharray: '5 5' }}
+                            cursor={{ stroke: 'var(--border-color)', strokeWidth: 1, strokeDasharray: '5 5' }}
                         />
                     )}
                     {activeVariations.map((v) => {
-                        const isMonotone = lineStyle === 'monotone';
-
+                        const colorVar = `var(--color-${v.id})`;
                         return (
                             <React.Fragment key={v.id}>
-                                {isMonotone && (
-                                    <Area
-                                        type="monotone"
-                                        dataKey={v.id}
-                                        name="__hide__"
-                                        stroke={getColor(v.id)}
-                                        strokeWidth={15}
-                                        fill="none"
-                                        strokeOpacity={0.3}
-                                        dot={false}
-                                        activeDot={false}
-                                        connectNulls
-                                        style={{ filter: 'blur(4px)' }}
-                                        legendType="none"
-                                        tooltipType="none"
-                                        isAnimationActive={false}
-                                    />
-                                )}
                                 <Area
                                     type={chartType as any}
                                     dataKey={v.id}
                                     name={v.name}
-                                    stroke={getColor(v.id)}
+                                    stroke={colorVar}
                                     strokeWidth={2}
-                                    fill={getColor(v.id)}
+                                    fill={colorVar}
                                     fillOpacity={isArea ? 0.2 : 0}
                                     dot={false}
                                     activeDot={isPanning ? false : { r: 6, strokeWidth: 0 }}
@@ -274,7 +244,9 @@ export const LineChart: React.FC<LineChartProps> = ({
                         dataKey="date"
                         height={30}
                         y={400}
-                        stroke="#8884d8"
+                        stroke="var(--brush-stroke)"
+                        fill="var(--brush-fill)"
+                        travellerWidth={10}
                         startIndex={startIndex ?? undefined}
                         endIndex={endIndex ?? undefined}
                         onChange={(range) => {
