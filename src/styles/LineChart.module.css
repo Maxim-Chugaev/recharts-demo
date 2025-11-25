@@ -11,6 +11,14 @@
     outline: none;
 }
 
+@media (max-width: 670px) {
+    .chartContainer {
+        padding: 0;
+        height: 400px;
+        /* Optional: adjust height for mobile if needed */
+    }
+}
+
 /* Add spacing above the Brush slider */
 /* Add spacing above the Brush slider */
 .chartContainer :global(.recharts-brush) {

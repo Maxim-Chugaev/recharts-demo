@@ -60,17 +60,22 @@
     color: var(--text-primary);
 }
 
+.rightControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 @media (max-width: 670px) {
     .container {
-        padding: 1rem;
+        padding: 0;
         min-width: auto;
     }
 
     .controlsRow {
         padding: 1rem;
-        padding-left: 1rem;
-        justify-content: flex-start;
-        /* Allow wrapping instead of column */
+        justify-content: space-between;
+        /* Keep space-between for mobile too if they fit, or wrap */
         flex-direction: row;
         align-items: center;
     }

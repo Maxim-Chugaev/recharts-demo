@@ -130,24 +130,26 @@ export const ChartContainer: React.FC = () => {
                         onSetLineStyle={setLineStyle}
                         onExport={handleExport}
                     />
-                    <ZoomControls
-                        onZoomIn={handleZoomIn}
-                        onZoomOut={handleZoomOut}
-                        onReset={handleResetZoom}
-                        isPanning={isPanning}
-                        onTogglePan={() => setIsPanning(!isPanning)}
-                    />
-                    <button
-                        className={styles.themeToggle}
-                        onClick={toggleTheme}
-                        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                    >
-                        {theme === 'light' ? (
-                            <Moon size={16} color="currentColor" strokeWidth={1.5} />
-                        ) : (
-                            <Sun size={16} color="currentColor" strokeWidth={1.5} />
-                        )}
-                    </button>
+                    <div className={styles.rightControls}>
+                        <ZoomControls
+                            onZoomIn={handleZoomIn}
+                            onZoomOut={handleZoomOut}
+                            onReset={handleResetZoom}
+                            isPanning={isPanning}
+                            onTogglePan={() => setIsPanning(!isPanning)}
+                        />
+                        <button
+                            className={styles.themeToggle}
+                            onClick={toggleTheme}
+                            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+                        >
+                            {theme === 'light' ? (
+                                <Moon size={16} color="currentColor" strokeWidth={1.5} />
+                            ) : (
+                                <Sun size={16} color="currentColor" strokeWidth={1.5} />
+                            )}
+                        </button>
+                    </div>
                 </div>
                 <LineChart
                     data={data}
